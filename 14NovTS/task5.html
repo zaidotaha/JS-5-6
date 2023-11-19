@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #controls {
+            margin-bottom: 10px;
+        }
+
+        #editor {
+            width: 400px;
+            height: 200px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <label for="fontSelect">Font:</label>
+        <select id="fontSelect">
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+        </select>
+
+        <label for="fontSizeSelect">Size:</label>
+        <select id="fontSizeSelect">
+            <option value="12px">12</option>
+            <option value="14px">14</option>
+            <option value="16px" selected>16</option>
+        </select>
+
+        <label for="italicCheckbox">Italic:</label>
+        <input type="checkbox" id="italicCheckbox">
+
+        <label for="boldCheckbox">Bold:</label>
+        <input type="checkbox" id="boldCheckbox">
+
+        <label for="underlineCheckbox">Underline:</label>
+        <input type="checkbox" id="underlineCheckbox">
+    </div>
+
+    <div id="editor" contenteditable="true">
+        Start typing here...
+    </div>
+
+    <script>
+        document.getElementById('fontSelect').addEventListener('change', updateEditorStyle);
+        document.getElementById('fontSizeSelect').addEventListener('change', updateEditorStyle);
+        document.getElementById('italicCheckbox').addEventListener('change', updateEditorStyle);
+        document.getElementById('boldCheckbox').addEventListener('change', updateEditorStyle);
+        document.getElementById('underlineCheckbox').addEventListener('change', updateEditorStyle);
+
+        function updateEditorStyle() {
+            const editor = document.getElementById('editor');
+            const font = document.getElementById('fontSelect').value;
+            const fontSize = document.getElementById('fontSizeSelect').value;
+            const isItalic = document.getElementById('italicCheckbox').checked ? 'italic' : 'normal';
+            const isBold = document.getElementById('boldCheckbox').checked ? 'bold' : 'normal';
+            const isUnderline = document.getElementById('underlineCheckbox').checked ? 'underline' : 'none';
+
+            editor.style.fontFamily = font;
+            editor.style.fontSize = fontSize;
+            editor.style.fontStyle = isItalic;
+            editor.style.fontWeight = isBold;
+            editor.style.textDecoration = isUnderline;
+        }
+    </script>
+</body>
+</html>

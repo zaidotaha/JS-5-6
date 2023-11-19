@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{margin:0; padding:0;}
+        #banner{
+            background-color: darkblue;
+            color: white;
+            text-align: center;
+            font-size: 2rem;
+            padding:1rem;
+        }
+        #table_div{
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>  
+    <div id="banner">Click to show Table / Double Click to hide Table</div>
+    <div id="table_div"></div>
+    <script src="table.js"></script>
+    <script>
+        let obj = JSON.parse(jsonObject);
+        document.getElementById("banner").addEventListener("click",show);
+        document.getElementById("banner").addEventListener("dblclick",hide);
+        function show(){
+            document.getElementById("table_div").style.display = "flex";
+        }
+        function hide(){
+            document.getElementById("table_div").style.display = "none";
+        }
+        function create(obj){
+            table_div = document.getElementById("table_div");
+            table = document.createElement("table");
+            table_div.appendChild(table);
+            table.style.border = "1px solid black";
+            row = table.insertRow();
+            cell = [];
+            for(let i = 0 ; i < 3 ; i++){
+                cell[i] = row.insertCell(i);
+                cell[i].style.border = "1px solid black";
+            }
+            cell[0].innerHTML = "First Name";
+            cell[1].innerHTML = "Mobile";
+            cell[2].innerHTML = "Email";
+
+            for(let a = 0; a < obj.users.length; a++){
+                row = table.insertRow();
+                cell = [];
+                for(let j = 0 ; j < 3 ; j++){
+                    cell[j] = row.insertCell(j);
+                    cell[j].style.border = "1px solid black";
+                }
+                cell[0].innerHTML = obj["users"][a]["firstName"];
+                cell[1].innerHTML = obj["users"][a]["phone"];
+                cell[2].innerHTML = obj["users"][a]["email"];
+            }
+        }
+        create(obj);
+    </script>
+</body>
+</html>

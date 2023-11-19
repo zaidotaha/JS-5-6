@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card-container{
+            width:500px;
+            border: 1px solid black;
+            margin-bottom:20px;
+        }
+        .card-header{
+            font-size:1.7rem;
+            padding:10px;
+            font-weight: bold;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: rgb(206, 206, 206);
+            position: relative;
+        }
+        .show-link, .hide-link{
+            position: absolute;
+            font-size: 0.8rem;
+            bottom: 5px;
+            right: 5px;
+            text-decoration: none;
+            color: blue; 
+            cursor: pointer;
+            transition: color 0.3s; 
+        }
+
+        .show-link:hover,.hide-link-hover {
+            color: red; 
+        }
+        .card-content{
+            padding:10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgb(237, 237, 237);
+            position: relative;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card-header">
+            What is lorem ipsum?
+            <div class="show-link" id="showlink1">Show</div>
+        </div>
+        <div class="card-content" id="card-content1">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <br><br><div class="hide-link" id="hidelink1">Hide</div>
+        </div>
+    </div>
+
+    <div class="card-container">
+        <div class="card-header">
+            Why do we use it?
+            <div class="show-link" id="showlink2">Show</div>
+        </div>
+        <div class="card-content" id="card-content2">
+            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+            <br><br><div class="hide-link" id="hidelink2">Hide</div>
+        </div>
+    </div>
+
+    <div class="card-container">
+        <div class="card-header">
+            Where does it come from?
+            <div class="show-link" id="showlink3">Show</div>
+        </div>
+        <div class="card-content" id="card-content3">
+            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+
+            <br><br><div class="hide-link" id="hidelink3">Hide</div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("showlink1").addEventListener("click",showlink1);
+        function showlink1(){
+            document.getElementById("card-content1").style.display = "block";
+        }
+        document.getElementById("hidelink1").addEventListener("click",hidelink1);
+        function hidelink1(){
+            document.getElementById("card-content1").style.display = "none";
+        }
+        document.getElementById("showlink2").addEventListener("click",showlink2);
+        function showlink2(){
+            document.getElementById("card-content2").style.display = "block";
+        }
+        document.getElementById("hidelink2").addEventListener("click",hidelink2);
+        function hidelink2(){
+            document.getElementById("card-content2").style.display = "none";
+        }
+        document.getElementById("showlink3").addEventListener("click",showlink3);
+        function showlink3(){
+            document.getElementById("card-content3").style.display = "block";
+        }
+        document.getElementById("hidelink3").addEventListener("click",hidelink3);
+        function hidelink3(){
+            document.getElementById("card-content3").style.display = "none";
+        }
+        
+    </script>
+</body>
+</html>

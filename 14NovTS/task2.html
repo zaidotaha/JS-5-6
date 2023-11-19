@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #country{
+            margin:30px 0px;
+            width:30%;
+            height:25vh;
+        }
+        img{
+            width:100%; 
+            object-fit:contain;
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <label for="Countries">Choose your country of residence:</label>
+    <select name="Countries" id="Countries">
+    <option value="Jordan">Jordan</option>
+    <option value="Palestine">Palestine</option>
+    <option value="Syria">Syria</option>
+    <option value="Saudi Arabia">Saudi Arabia</option>
+    <option value="Iraq">Iraq</option>
+    <option value="Kuwait">Kuwait</option>
+    <option value="Egypt">Egpyt</option>
+    <option value="Oman">Oman</option>
+    <option value="UAE">UAE</option>
+    <option value="Sudan">Sudan</option>
+    </select>
+    <div id="country">
+        <img src="images/Jordan.png" id = "country-img">
+    </div>
+
+    <script>
+            el = document.getElementById("Countries");
+            el.addEventListener("change",func);
+            country_img = document.getElementById("country-img");
+        function func(){
+            switch(el.value){
+                case "Jordan":
+                    country_img.src = "images/Jordan.png";
+                    break;
+                case "Palestine":
+                    country_img.src = "images/Palestine.png";
+                    break;
+                case "Syria":
+                    country_img.src = "images/Syria.png";       
+                    break;
+                case "Saudi Arabia":
+                    country_img.src = "images/Saudi.png";
+                    break;
+                case "Iraq":
+                    country_img.src = "images/Iraq.png";
+                    break;
+                case "Kuwait":
+                    country_img.src = "images/Kuwait.png";
+                    break;
+                case "Egypt":
+                    country_img.src = "images/Egypt.png";
+                    break;
+                case "Oman":
+                    country_img.src = "images/Oman.png";
+                    break;
+                case "UAE":
+                    country_img.src = "images/UAE.png";
+                    break;
+                case "Sudan":
+                    country_img.src = "images/Sudan.png";
+                    break; 
+                default:
+                    break;  
+            }
+        }
+    </script>
+</body>
+</html>

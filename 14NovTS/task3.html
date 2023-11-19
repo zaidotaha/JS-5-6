@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 0; margin: 0;
+        }
+        .inline{
+            display:inline-block;
+        }
+        .margin{
+            margin:10px;
+        }
+        .message{
+            font-size: 0.8rem; color: red; margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="inline">
+        <div class="margin"><span>Password (min 6 characters):</span><br></div>
+        <div class="margin"><span>Repeat Password:</span></div>
+    </div>
+    <div class="inline">
+        <div class="margin"><input id="password" class="input"><span id="message1" class="message"></span><br></div>
+        <div class="margin"><input id="repeat" class="input"><span id="message2" class="message"></span></div>
+    </div>
+
+    <script>
+        document.getElementById("password").addEventListener("input",listener);
+        function listener(){
+            x = document.getElementById("password").value;
+            if(x.length<6){
+                document.getElementById("message1").innerHTML = "Too short!";
+            }
+            else{
+                document.getElementById("message1").innerHTML = "";
+            }
+        }
+
+        document.getElementById("repeat").addEventListener("input",listener2);
+        function listener2(){
+            x = document.getElementById("password").value;
+            y = document.getElementById("repeat").value;
+            if(x!==y){
+                document.getElementById("message2").innerHTML = "The two passwords don't match!";
+            }
+            else{
+                document.getElementById("message2").innerHTML = "";
+            }
+        }
+    </script>
+</body>
+</html>

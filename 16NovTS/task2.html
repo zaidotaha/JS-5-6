@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0; padding:0;
+            padding:1%;
+        }
+        #container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width:80%; max-width: 350px;
+            margin:auto;
+        }
+        #form, #card{
+            margin:0;
+            padding:0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width:100%;
+            border: 1px solid darkgrey;
+            background-color: rgb(216, 216, 216);
+            box-sizing: border-box; 
+            padding:15px; margin:10px;
+            border-radius: 30px;
+        }
+        #form{
+            box-shadow: 1px -1px 40px -17px rgba(0,0,0,1);
+            -webkit-box-shadow: 1px -1px 40px -17px rgba(0,0,0,1);
+            -moz-box-shadow: 1px -1px 40px -17px rgba(0,0,0,1);
+        }
+        #form form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width:100%;
+        }
+        input,textarea{
+            width: 95%;
+            box-sizing: border-box;
+            margin:7px;
+            background-color: rgb(252, 252, 252);
+            border: lightgrey;
+            padding:.5rem;
+            border-radius: 10px;
+        }
+        textarea {
+            resize: none;
+        }
+        #button{
+            width:auto;
+            color: black;
+            background-color: rgb(182, 182, 182);
+            padding:.8rem 1.2rem;
+            border-radius: 30px;
+            margin-top:15px;
+            font-size: 1rem;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .input_header, .header{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            width:100%;
+            text-align: left;
+            color: rgb(0, 0, 0);
+        }
+        .input_header{
+            margin-left: 30px;
+        }
+        .header{
+            margin-left:5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        #card{
+            display:none;
+            padding:20px;
+            background-color: rgb(246, 246, 246);
+        }
+        .white-card{
+            width: 95%;
+            margin:5px auto;
+            box-sizing: border-box;
+            border: lightgrey;
+            padding:.5rem;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: lighter;
+        }
+        .project{
+            margin-bottom: 20px;
+            margin-left:0px;
+            text-align: center;
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="form">
+            <form>
+                <div class="input_header">Project Name: </div>
+                <input type="text" id="project_name">
+                <div class="input_header">Project Description: </div>
+                <textarea type="text" id="project_desc" rows="3"></textarea>
+                <div class="input_header">User types: </div>
+                <input type="text" id="user_types">
+                <div class="input_header">Technology used: </div>
+                <input type="text" id="technology">
+                <input type="submit" value="Create Project Card" id="button">
+            </form>
+        </div>
+        <div id="card">
+            <div class="header project" id="project_name_card"></div>
+            <div class="header">Project Description: </div>
+            <div class="white-card" id="project_desc_card">test</div>
+            <div class="header">User types: </div>
+            <div class="white-card" id="user_types_card">test</div>
+            <div class="header">Technology used: </div>
+            <div class="white-card" id="technology_card">test</div>
+        </div>
+
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (sessionStorage.getItem("displayCard") === "true") {
+                createcard(); 
+            }
+        });
+
+        document.getElementById("button").addEventListener("click", function(event) {
+            event.preventDefault(); 
+            store(); 
+            location.reload(); 
+        });
+
+        function store(){
+            sessionStorage.setItem("name",document.getElementById("project_name").value);
+            sessionStorage.setItem("desc",document.getElementById("project_desc").value);
+            sessionStorage.setItem("types",document.getElementById("user_types").value);
+            sessionStorage.setItem("tech",document.getElementById("technology").value);
+            sessionStorage.setItem("displayCard", "true"); 
+            createcard();
+        }
+        function createcard(){
+            document.getElementById("card").style.display = "block";
+            document.getElementById("project_name_card").innerHTML = sessionStorage.getItem("name");
+            document.getElementById("project_desc_card").innerHTML = sessionStorage.getItem("desc");
+            document.getElementById("user_types_card").innerHTML = sessionStorage.getItem("types");
+            document.getElementById("technology_card").innerHTML = sessionStorage.getItem("tech");
+        }
+    </script>
+
+</body>
+</html>

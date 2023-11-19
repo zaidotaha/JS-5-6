@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #name_div2{
+            background-color: green;
+        }
+        #email_div2{
+            background-color: red;
+        }
+        #mobile_div2{
+            background-color: yellow;
+        }
+        span{
+            margin-right:1px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        Name:
+        <input id="name_input">
+        Email:
+        <input id="email_input">
+        Mobile:
+        <input id="mobile_input">
+        <input type="submit" value="Click On Me to Print" id="create">
+    </div>
+    <hr>
+    <div>
+        <span id="name_div2"></span>
+        <span id="email_div2"></span>
+        <span id="mobile_div2"></span>
+    </div>
+    <hr>
+    <div id="table_div">
+        <!-- table -->
+    </div>
+
+    <script>
+        let number_of_entries = 0;
+        document.getElementById("name_input").addEventListener("blur",name);
+        document.getElementById("create").addEventListener("click",create);
+        function name(){
+            document.getElementById("name_div2").innerHTML = document.getElementById("name_input").value;
+        }
+        document.getElementById("email_input").addEventListener("blur",email);
+        function email(){
+            document.getElementById("email_div2").innerHTML = document.getElementById("email_input").value;
+        }
+        document.getElementById("mobile_input").addEventListener("blur",mobile);
+        function mobile(){
+            document.getElementById("mobile_div2").innerHTML = document.getElementById("mobile_input").value;
+        }
+        
+        function create(){
+            table_div = document.getElementById("table_div");
+            if(number_of_entries==0){
+                table = document.createElement("table");
+                table_div.appendChild(table);
+                table.style.border = "1px solid black";
+            }
+            row = table.insertRow(number_of_entries++);
+            cell = [];
+            for(let i = 0 ; i < 3 ; i++){
+                cell[i] = row.insertCell(i);
+                cell[i].style.border = "1px solid black";
+            }
+            cell[0].innerHTML = document.getElementById("name_input").value;
+            cell[1].innerHTML = document.getElementById("email_input").value;
+            cell[2].innerHTML = document.getElementById("mobile_input").value;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            position: relative; top:0; left:0;
+            width:90%; margin:auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(190, 254, 233);
+        }
+        .container{
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width:80%;
+            max-width:400px;
+        }
+        .form{
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width:90%;
+            padding:20px;
+            background-color:  rgb(98, 163, 163);
+            border-radius: 20px;
+        }
+        input{
+            margin:0.4rem;
+            border-radius: 10px;
+            border-color: grey;
+            border-style: solid;
+            padding:5px;
+            margin:8px;
+        }
+        #Name, #Age, #University, #Major{
+            width:90%;
+            height:1.5rem;
+        }
+        textarea{
+            width:90%;
+        }
+
+        .class{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .card{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width:100%;
+            margin:10%; 
+            border: 1px solid black;
+        }
+        .card div{
+            margin: 3px;
+        }
+        .age_gender, .major_university{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+        .age_gender div, .major_university div{
+            width:50%;
+        }
+        #name_display{
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding-top:10px;
+        }
+        hr{
+            border: 1px groove rgb(176, 174, 174);
+            display: none;
+            width:80%;
+        }
+        #pl_span, #desc_span{
+            white-space: pre;
+        }
+        button{
+            margin-top: 15px;
+            padding:7px 20px;
+            border-radius: 10px;
+            border: 1px solid grey;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Form</h1>
+        <div class="form">
+            <input type="text" id="Name" value="Name" onfocus="hide(this)">
+            <input type="text" id="Age" value="Age" size="4" onfocus="hide(this)">
+            <div class="one-liner">
+                <input type="radio" name="gender" value="male" checked > Male
+                <input type="radio" name="gender" value="female" > Female
+            </div>
+            <textarea id="Desc" rows=4 onfocus="hide(this)">Brief Description</textarea>
+            <input type="text" id="Major" value="Major" onfocus="hide(this)">
+            <input type="text" id="University" value="University" onfocus="hide(this)">
+            <div class="one-liner">
+                <input type="checkbox" id="pl1" name="pl1" value="C++">
+                    <label for="pl1"> C++ </label>
+                <input type="checkbox" id="pl2" name="pl2" value="Java">
+                    <label for="pl2"> Java </label>
+                <input type="checkbox" id="pl3" name="pl3" value="Python">
+                    <label for="pl3"> Python</label>
+            </div>
+            <button type="submit" id="submit">Submit</button>
+        </div>
+        <div class="card">
+            <div id="name_display"></div>
+            <hr id="name_hr">
+            <div class="age_gender">
+                <div id="age_display"><b>Age: </b><span id="age_span"></span></div>
+                <div id="gender_display"><b>Gender: </b><span id="gender_span"></span></div>
+            </div>
+            <div class="major_university">
+                <div id="university_display"><b>University: </b><span id="uni_span"></span></div>
+                <div id="major_display"><b>Major: </b><span id="major_span"></span></div>
+            </div>
+            <div id="PL"><b>Programming languages: </b><span id="pl_span"></span></div>
+            <div id="Brief_Desc"><b>Brief Description: </b><span id="desc_span"></span></div>
+        </div>
+    </div>
+
+
+    <script>
+        submit_button = document.getElementById("submit");
+        submit_button.addEventListener("click",local);
+
+        window.addEventListener("load",display_card);
+        window.addEventListener("storage",display_card);
+
+        function hide(el){
+            el.value="";
+        }
+
+        function local(){
+            el = document.getElementById("Name");
+            localStorage.setItem("Name",el.value);
+            el = document.getElementById("Age");
+            localStorage.setItem("Age",el.value);
+            el = document.querySelector('input[name="gender"]:checked');
+            localStorage.setItem("gender",el.value);
+            el = document.getElementById("Desc");
+            localStorage.setItem("Desc",el.value);
+            el = document.getElementById("Major");
+            localStorage.setItem("Major",el.value);
+            el = document.getElementById("University");
+            localStorage.setItem("University",el.value);
+            
+            
+            el = document.getElementById("pl1");
+            if(el.checked==true)
+                localStorage.setItem("pl1",el.value);
+            else
+                localStorage.setItem("pl1",null);
+            el = document.getElementById("pl2");
+            if(el.checked==true)
+                localStorage.setItem("pl2",el.value); 
+            else
+                localStorage.setItem("pl2",null);           
+            el = document.getElementById("pl3");
+            if(el.checked==true)
+                localStorage.setItem("pl3",el.value);
+            else
+                localStorage.setItem("pl3",null);
+            el = document.getElementById("Major");
+            localStorage.setItem("Major",el.value);
+            el = document.getElementById("University"); 
+            localStorage.setItem("University",el.value);
+            display_card();
+        }
+        function remove_default(){
+
+        }
+        function display_card(){
+            document.getElementById("name_display").innerText = localStorage.getItem("Name");
+            document.getElementById("name_hr").style.display = "block";
+            document.getElementById("age_span").innerText = localStorage.getItem("Age");
+            document.getElementById("gender_span").innerText = localStorage.getItem("gender");
+            document.getElementById("desc_span").innerText = localStorage.getItem("Desc");
+            document.getElementById("major_span").innerText = localStorage.getItem("Major");
+            document.getElementById("uni_span").innerText = localStorage.getItem("University");
+
+            pl = "";
+            ar = ["pl1","pl2", "pl3"];
+            for(key in ar){
+                if(localStorage.getItem(ar[key])!="null"){
+                    pl+=localStorage.getItem(ar[key]).trim() +"  ";
+                }
+            }
+            document.getElementById("pl_span").innerText = pl;
+        }
+    </script>
+</body>
+</html>
